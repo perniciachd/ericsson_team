@@ -1,0 +1,18 @@
+winget install --id Git.Git -e --source winget
+ 
+curl -o GitInstaller.exe https://github.com/git-for-windows/git/releases/latest/download/Git-64-bit.exe
+ 
+then reopen your command prompt
+ 
+and run git --version
+ 
+git would be installed now
+ 
+clone the project in your local and go that directory 
+ 
+and run git checkout -b your-branch-name
+ 
+then local branch would be created 
+ 
+then run : git push -u origin your-branch-name
+ 
