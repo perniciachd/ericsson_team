@@ -1,50 +1,52 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import BasicComponent from "./BasicComponent";
-
-const emp=[
-    {
-    name:"sumit",
-    dept:"IT"
+import React, { useEffect, useRef, useState } from "react";
+import BasicComp from "./BasicComp";
+const Employees = [{
+    name: "Sumit",
+    dept:"Engg"
 },
- {
-    name:"Rahul",
-    dept:"NOn-IT"
+{
+    name: "Harsh",
+    dept:"Operations"
 },
- {
-    name:"john",
-    dept:"BPO"
-},
-
-]
+{
+    name: "Anaya",
+    dept:"Support"
+}];
 function Inc(){
-const [val, setVal]=useState(0);
-useEffect(()=>{
-    console.log('hello inc');
-},[val])
-
-const inc =()=>{
-    console.log('button click');
-    setVal(val+1);
-}
- const dec= ()=>{
-    console.log('button click');
-    setVal(val-1);
- }
- return (
-    <>
-    <p>{val}</p>
-    {emp.map((obj,i)=>{
-        return(
-            <React.Fragment key={i}>
-               <BasicComponent obj= {obj} />
-                </React.Fragment>
-        )
-    })}
-    <button onClick={inc}>Inc</button>
-<button onClick={dec}>Dec</button>
-    </>
- )
-
+    //let val = 0;
+    const [val, setVal]=useState(0);
+    const [name, setName]=useState("");
+    const inputRef = useRef<any>(null);
+    useEffect(()=>{
+        inputRef.current.focus();
+        // API calls 
+    },[name,val]) 
+    
+    const inc = ()=>{
+        console.log('button clicked');
+        setVal(val+1); 
+    }
+    const dec = ()=>{
+        console.log('button clicked');
+        setVal(val-1); 
+    }
+    return(
+        <>
+            <p>{val}</p>
+            {/* {Employees.map((obj,i)=>{
+                return(
+                    <React.Fragment key={i}>  
+                        <BasicComp obj={obj}/>
+                    </React.Fragment>
+                )
+            })} */}
+            <h1 className="text-3xl font-bold underline">
+                Hello world!
+            </h1>
+            <input ref={inputRef} type="text" value={name} onChange={(e)=> setName(e.target.value)}/>
+            <button onClick={inc}>Inc</button> 
+            <button onClick={dec}>Dec</button>
+        </>
+    )
 }
 export default Inc;

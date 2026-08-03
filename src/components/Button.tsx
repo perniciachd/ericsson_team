@@ -1,10 +1,6 @@
-function Button({title,leftIcon,rightIcon,btnClicked,cssStyle}:any){
+function Button(){
     return(
-<>
-         {leftIcon?<p>Icon1</p>:null}
-<button className={cssStyle} onClick={btnClicked}>{title}</button>
-         {rightIcon?<p>Icon2</p>:null}
-</>
+        <button onClick={()=> console.log('Clicked me')}>Click me</button>
     )
 }
 export default Button;
