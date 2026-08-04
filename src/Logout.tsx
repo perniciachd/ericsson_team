@@ -1,5 +1,11 @@
 function Logout(){
- return <p>Logout</p>   
+  const logoutClick = ()=> {
+    console.log("logout called");
+  };
+
+  return (
+    <button onClick={logoutClick}>Logout</button>
+  );   
 }
 
 export default Logout;

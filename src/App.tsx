@@ -1,38 +1,27 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import Login from './Login'
-import Logout from './Logout'
-import Increment from './Increment'
-import Signup from './Signup'
-
+import Button from './Button';
 function App() {
-  const [registered, setIsUserLoggedIn] = useState(false);
-  const def= ()=>{
-    console.log("Calling from Child");
+  const [abc, setIsUserLoggedIn] = useState(false);
+  const class1 = {
+  }
+  // Call the function to update the isUserLoggedIn
+  const def = ()=>{
+    console.log('Calling from child');
     setIsUserLoggedIn(true);
   }
-  if(registered){
-    return <Login/>
+  const callDark=()=>{
+    console.log('Dark btn called');
   }
-  return (<Signup isUserLoggedIn={registered} updateFlag={def}/>)
-  // if(isUserLogged){
-  //   return <Login/>
-  // } else {
-  //   return <Logout/>
-  // }
-  // return (
-  //   <div>
-  //     <Increment/>
-  //   </div>
-  // )
-  // return (
-  //   <div>
-  //     {isUserLogged ? <Login /> : <Logout />}
-  //   </div>
-  // );
-}
+  const calllogOut=()=>{
+    console.log('Logout btn called');
+  }
+  return(
+    // <Inc/>
+<>
+<Button title="Dark" leftIcon={true} rightIcon={false} btnClicked={callDark} cssStyle={class1}/>
+<Button title="Log out" leftIcon={false} rightIcon={false} btnClicked={calllogOut} cssStyle={class1}/>
+</>
+  )
 
+}
 export default App
