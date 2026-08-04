@@ -15,7 +15,7 @@ function SignIn() {
       username === import.meta.env.VITE_USERNAME &&
       password === import.meta.env.VITE_PASSWORD
     ) {
-      navigate("/dashboard");
+      navigate("/dashboard/explore-funds");
     } else {
       alert("Invalid Username or Password");
     }

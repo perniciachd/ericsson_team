@@ -1,7 +1,9 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "./Layout";
 import SignIn from "./SignIn";
 import Dashboard from "./Dashboard";
+import ExploreFunds from "./ExploreFunds";
+import MyPortfolio from "./MyPortfolio";
 
 const router = createBrowserRouter([
   {
@@ -9,11 +11,25 @@ const router = createBrowserRouter([
     element: <SignIn />,
   },
   {
+    path: "/dashboard",
     element: <Layout />,
     children: [
       {
-        path: "/dashboard",
         element: <Dashboard />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to="explore-funds" replace />,
+          },
+          {
+            path: "explore-funds",
+            element: <ExploreFunds />,
+          },
+          {
+            path: "portfolio",
+            element: <MyPortfolio />,
+          },
+        ],
       },
     ],
   },

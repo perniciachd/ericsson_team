@@ -98,7 +98,50 @@
 
     }
 
-  ]
+    ],
 
+  "myFunds": [
+    {
+      "id": 1,
+      "fundName": "Mirae Asset Large Cap Fund",
+      "category": "Equity",
+      "risk": "Moderate Risk",
+      "nav": 98.74,
+      "returns": 14.25
+    },
+    {
+      "id": 2,
+      "fundName": "Parag Parikh Flexi Cap Fund",
+      "category": "Flexi Cap",
+      "risk": "High",
+      "nav": 76.58,
+      "returns": 18.91
+    },
+    {
+      "id": 3,
+      "fundName": "Nippon India Small Cap Fund",
+      "category": "Small Cap",
+      "risk": "High",
+      "nav": 142.63,
+      "returns": 22.47
+    },
+    {
+      "id": 4,
+      "fundName": "DSP Corporate Bond Fund",
+      "category": "Debt",
+      "risk": "Low",
+      "nav": 41.29,
+      "returns": 7.12
+    },
+    {
+      "id": 5,
+      "fundName": "Canara Robeco Emerging Equities Fund",
+      "category": "Large & Mid Cap",
+      "risk": "Moderate Risk",
+      "nav": 63.85,
+      "returns": 13.76
+    }
+  ]
 }
+
  
