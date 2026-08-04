@@ -1,0 +1,96 @@
+{
+  "funds": [
+    {
+      "title": "Parag Parikhi Flexi Cap",
+      "type": "Equity",
+      "risk": "High Risk",
+      "nav": 78.40,
+      "toatalReturn": "+110.12",
+      "timeDuration": "1Y"
+    },
+    {
+      "title": "Nippon India Small Cap",
+      "type": "Equity",
+      "risk": "High Risk",
+      "nav": 82.30,
+      "toatalReturn": "+95.30",
+      "timeDuration": "1Y"
+    },
+    {
+      "title": "Axis Bluechip Fund",
+      "type": "Equity",
+      "risk": "High Risk",
+      "nav": 90.20,
+      "toatalReturn": "+120",
+      "timeDuration": "1Y"
+    },
+    {
+      "title": "Mirae Asset Large Cap",
+      "type": "Equity",
+      "risk": "High Risk",
+      "nav": 76.80,
+      "toatalReturn": "+105",
+      "timeDuration": "1Y"
+    },
+    {
+      "title": "Kotak Emerging Equity",
+      "type": "Equity",
+      "risk": "High Risk",
+      "nav": 82.30,
+      "toatalReturn": "+98",
+      "timeDuration": "1Y"
+    },
+    {
+      "title": "UTI Nifty 50 Index",
+      "type": "Index",
+      "risk": "Moderate Risk",
+      "nav": 99.25,
+      "toatalReturn": "+102",
+      "timeDuration": "1Y"
+    }
+  ],
+    "portfolio": [
+    {
+      "id": 1,
+      "title": "Parag Parikh Flexi Cap",
+      "type": "Flexi Cap",
+      "investmentType": "SIP",
+      "sipAmount": 5000,
+      "sipFrequency": "Monthly",
+      "currency": "INR",
+      "investedAmount": 60000,
+      "currentProfit": 12500,
+      "currentValue": 72500,
+      "profitPercentage": 20.83,
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "title": "Nippon India Small Cap",
+      "type": "Small Cap",
+      "investmentType": "SIP",
+      "sipAmount": 5000,
+      "sipFrequency": "Monthly",
+      "currency": "INR",
+      "investedAmount": 60000,
+      "currentProfit": 9500,
+      "currentValue": 69500,
+      "profitPercentage": 15.83,
+      "status": "Active"
+    },
+    {
+      "id": 3,
+      "title": "Axis Bluechip Fund",
+      "type": "Large Cap",
+      "investmentType": "SIP",
+      "sipAmount": 5000,
+      "sipFrequency": "Monthly",
+      "currency": "INR",
+      "investedAmount": 60000,
+      "currentProfit": 12000,
+      "currentValue": 72000,
+      "profitPercentage": 20,
+      "status": "Active"
+    }
+  ]
+}

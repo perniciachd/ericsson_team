@@ -5,8 +5,9 @@ import Layout from "./components/Layout";
 import Funds from "./components/Funds";
 import Portfolio from "./components/Portfolio";
 import TypeList from "./components/TypeList";
+import Product from "./Product";
  
-const router: any = createBrowserRouter([
+const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
@@ -22,6 +23,10 @@ const router: any = createBrowserRouter([
       {
         path: "/",
         element: <Login/>,
+      },
+      {
+        path: "/product",
+        element: <Product/>,
       },
     ],
   },
