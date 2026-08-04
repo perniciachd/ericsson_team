@@ -1,0 +1,67 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1e293b;
+  padding: 10px 20px;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-icon {
+  font-size: 18px;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.header-title-highlight {
+  color: #38bdf8;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-username {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.header-btn {
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #475569;
+  background-color: transparent;
+  color: #e2e8f0;
+  transition: background-color 0.2s;
+}
+
+.header-btn:hover {
+  background-color: #334155;
+}
+
+.dark-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logout-btn {
+  background-color: transparent;
+}
