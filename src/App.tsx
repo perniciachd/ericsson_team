@@ -1,21 +1,7 @@
-import { useState } from 'react'
-import './App.css'
+import AppRouter from "./components/routes/AppRouter";
 
-import Login from './components/Login.tsx'
-import SignUp from './components/Signup.tsx'
+const App = () => {
+  return <AppRouter />;
+};
 
-
-function App() {
-  const [abc, setIsUserLoggedIn] = useState(false);
-  // Call the function to update the isUserLoggedIn
-  const def = ()=>{
-    console.log('Calling from child');
-    setIsUserLoggedIn(true);
-  }
-  if(abc){
-    return(<Login/>)
-  }
-  return(<SignUp isUserLoggedIn={abc} updateFlag={def}/>)
-}
- 
-export default App
+export default App;
