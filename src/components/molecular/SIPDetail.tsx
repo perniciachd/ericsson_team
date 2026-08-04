@@ -1,6 +1,7 @@
 import Tile from "../atomic/Tile";
 
-function SIPDetail=()=>{
+function SIPDetail(){
+    const sipname="abc test";
     return(
         <>
         <p>{sipname}</p>
