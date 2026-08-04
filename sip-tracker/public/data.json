@@ -1,0 +1,104 @@
+{
+
+  "funds": [
+
+    {
+
+      "id": 1,
+
+      "fundName": "SBI Blue Chip Fund",
+
+      "category": "Equity",
+
+      "risk": "Low",
+
+      "nav": 123.45,
+
+      "returns": 12.34
+
+    },
+
+    {
+
+      "id": 2,
+
+      "fundName": "HDFC Balanced Advantage Fund",
+
+      "category": "Balanced",
+
+      "risk": "Moderate Risk",
+
+      "nav": 67.89,
+
+      "returns": 8.90
+
+    },
+
+    {
+
+      "id": 3,
+
+      "fundName": "ICICI Prudential Bluechip Fund",
+
+      "category": "Equity",
+
+      "risk": "High",
+
+      "nav": 45.67,
+
+      "returns": 15.67
+
+    },
+
+    {
+
+      "id": 4,
+
+      "fundName": "Axis ELSS Tax Saver",
+
+      "category": "ELSS",
+
+      "risk": "Moderate Risk",
+
+      "nav": 89.12,
+
+      "returns": 11.45
+
+    },
+
+    {
+
+      "id": 5,
+
+      "fundName": "Kotak Debt Fund",
+
+      "category": "Debt",
+
+      "risk": "Low",
+
+      "nav": 34.56,
+
+      "returns": 6.78
+
+    },
+
+    {
+
+      "id": 6,
+
+      "fundName": "Mirae Asset Large Cap Fund",
+
+      "category": "Equity",
+
+      "risk": "High",
+
+      "nav": 156.22,
+
+      "returns": 18.56
+
+    }
+
+  ]
+
+}
+ 
