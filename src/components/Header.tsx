@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import Logo from "./atomic/Logo";
 import Button from "./atomic/Button";

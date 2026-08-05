@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "./Header";
 import Button from "./atomic/Button";
 import ExploreFunds from "./ExploreFunds";
-import Dashboard from "./Dashboard";
+import MyPortfolio from "../MyPortfolio";
 
 const Market = () => {
   const [activeTab, setActiveTab] = useState("funds");
@@ -21,7 +21,7 @@ const Market = () => {
         />
       </div>
       {activeTab === "funds" && <ExploreFunds />}
-      {activeTab === "portfolio" && <Dashboard />}
+      {activeTab === "portfolio" && <MyPortfolio />}
     </>
   );
 };

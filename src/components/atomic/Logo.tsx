@@ -2,8 +2,6 @@ type LogoProps = {
   text?: string;
   subtitle?: boolean;
 };
-
-
 const Logo = ({
   text = "SIP Tracker",
   subtitle = false

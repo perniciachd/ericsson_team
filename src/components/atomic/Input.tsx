@@ -1,31 +1,35 @@
-type InputProps={
+import { forwardRef } from "react";
 
-label:string;
-type?:string;
-placeholder:string;
-value:string;
-onChange:(e:any)=>void;
-}
-const Input=({
-label,
-type="text",
-placeholder,
-value,
-onChange
-}:InputProps)=>{
+type InputProps = {
+  type?: string;
+  name: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-return(
-<div className="field">
-<label>
-{label}
-</label>
-<input
-type={type}
-placeholder={placeholder}
-value={value}
-onChange={onChange}
-/>
-</div>
-)
-}
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      type = "text",
+      name,
+      placeholder,
+      value,
+      onChange,
+    },
+    ref
+  ) => {
+    return (
+      <input
+        ref={ref}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
+    );
+  }
+);
+
 export default Input;
