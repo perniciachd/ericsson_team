@@ -4,6 +4,8 @@ import Tile from "../atomic/Tile";
 
 type FundsProps = {
   type: "Explore Funds" | "My Portfolio";
+  searchTerm?: string;
+  categoryFilter?: string;
 };
 
 type Fund = {
@@ -15,7 +17,11 @@ type Fund = {
   returns: number;
 };
 
-function Funds({ type }: FundsProps) {
+function Funds({
+  type,
+  searchTerm = "",
+  categoryFilter = "All",
+}: FundsProps) {
   const [fundData, setFundData] = useState<Fund[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -38,6 +44,18 @@ function Funds({ type }: FundsProps) {
     fetchFunds();
   }, [type]);
 
+  const filteredFunds = fundData.filter((fund) => {
+    const matchesCategory =
+      categoryFilter === "All" ||
+      fund.category === categoryFilter;
+
+    const matchesSearch = fund.fundName
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
+
   if (loading) {
     return (
       <p className="text-center text-lg mt-10">
@@ -48,16 +66,22 @@ function Funds({ type }: FundsProps) {
 
   return (
     <div className="space-y-4">
-      {fundData.map((fund) => (
-        <Tile
-        //   key={fund.id}
-          fundName={fund.fundName}
-          category={fund.category}
-          risk={fund.risk}
-          nav={fund.nav}
-          returns={fund.returns}
-        />
-      ))}
+      {filteredFunds.length > 0 ? (
+        filteredFunds.map((fund) => (
+          <Tile
+            key={fund.id}
+            fundName={fund.fundName}
+            category={fund.category}
+            risk={fund.risk}
+            nav={fund.nav}
+            returns={fund.returns}
+          />
+        ))
+      ) : (
+        <p className="text-center text-gray-500 text-lg">
+          No funds found.
+        </p>
+      )}
     </div>
   );
 }
