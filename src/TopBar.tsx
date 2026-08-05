@@ -1,5 +1,5 @@
 import DarkTheme from "./DarkTheme";
-import Logout from "./Logout";
+import Logout from "./components/pages/Logout";
 function TopBar() {
    return (
     <div>
