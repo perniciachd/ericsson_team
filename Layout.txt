@@ -1,0 +1,28 @@
+src/
+├── components/
+│   ├── atoms/
+│   │   ├── Button.jsx
+│   │   ├── Input.jsx
+│   │   └── Tile.jsx
+│   │
+│   ├── organisms/
+│   │   └── TopBar.jsx
+│   │
+│   └── templates/
+│       └── MainLayout.jsx
+│
+├── pages/
+│   ├── LoginPage.jsx
+│   ├── DashboardPage.jsx
+│   ├── EquityFundPage.jsx
+│   ├── DebtFundPage.jsx
+│   └── HybridFundPage.jsx
+│
+├── contexts/
+│   └── ThemeContext.jsx
+│
+├── routes/
+│   └── AppRoutes.jsx
+│
+├── App.jsx
+└── main.jsx
