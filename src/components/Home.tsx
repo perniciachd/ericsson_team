@@ -1,12 +1,19 @@
-function Home({parentCall}:any){
-    const handleLogout = ()=>{
+import TopBar from "./TopBar";
+
+function Home({ parentCall }: any) {
+    const handleLogout = () => {
         parentCall();
-    }
-    return(
+    };
+
+    return (
         <>
-        <p>Home</p>
-        <button onClick={handleLogout}>LogOut</button>
+            <TopBar onLogout={handleLogout} />
+            <div style={{ padding: "16px" }}>
+                <button>Explore funds</button>
+            </div>
+          
         </>
-    )
+    );
 }
+
 export default Home;

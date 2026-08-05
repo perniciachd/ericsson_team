@@ -1,0 +1,52 @@
+
+[
+    {
+      "id": "1",
+      "name": "Parag Parikh Flexi Cap",
+      "category": "Equity",
+      "nav": 78.40,
+      "risk": "High risk"
+    },
+    {
+      "id": "2",
+      "name": "Nippon India Small Cap",
+      "category": "Equity",
+      "nav": 145.80,
+      "risk": "High risk"
+    },
+    {
+      "id": "3",
+      "name": "Axis Bluechip Fund",
+      "category": "Equity",
+      "nav": 54.20,
+      "risk": "High"
+    },
+    {
+      "id": "4",
+      "name": "UTI Nifty 50 Index",
+      "category": "Index",
+      "nav": 128.60,
+      "risk": "Moderate risk"
+    },
+    {
+      "id": "5",
+      "name": "Motilal Oswal Nasdaq 100",
+      "category": "Index",
+      "nav": 32.70,
+      "risk": "High risk"
+    },
+    {
+      "id": "6",
+      "name": "HDFC Balanced Advantage",
+      "category": "Hybrid",
+      "nav": 42.1,
+      "risk": "Moderate risk"
+    },
+    {
+      "id": "7",
+      "name": "DSP Gold Fund",
+      "category": "Hybrid",
+      "nav": 22.40,
+      "risk": "Low risk"
+    }
+] 
