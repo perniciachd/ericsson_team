@@ -1,12 +1,16 @@
 import DarkTheme from "./DarkTheme";
 import Logout from "./Logout";
+import { useUserContext } from "../Context/UserContext";
+
 function TopBar() {
-   return (
+  const { userName } = useUserContext();
+
+  return (
     <div>
       <span>SIP Tracker</span>
-
-      <DarkTheme/>
-    <Logout/>
+      <span>{userName ? `Welcome, ${userName}!` : "Welcome, Guest!"}</span>
+      <DarkTheme />
+      <Logout />
     </div>
   );
 }
