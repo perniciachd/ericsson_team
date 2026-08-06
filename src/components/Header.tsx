@@ -1,17 +1,48 @@
-import IconButton from '../atomic/IconButton';
-import LogoutButton from '../atomic/LogoutButton';
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Logo from "../atomic/Logo";
+import Button from "./Button";
 
-function Header({ userName, onLogout }: { userName: string; onLogout: () => void }) {
+// import { useUser } from "../context/UserContext";
+
+const Header = () => {
+  const navigate = useNavigate();
+  const [dark,setDark] = useState(false);
+  const username =
+    sessionStorage.getItem("sip.tracker.auth") || "admin";
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
+    setDark(!dark);
+  };
+//   const {name,setName}=useUser();
+  const logout = () => {
+    // setName('abc');
+    sessionStorage.removeItem("sip.tracker.auth");
+    navigate("/");
+  };
   return (
-    <div className="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
-      <h1 className="text-lg font-semibold text-gray-800">
-        Welcome, {userName}
-      </h1>
-      <div className="flex items-center gap-3">
-        <LogoutButton onLogout={onLogout} />
+ <header className="appbar">
+      <div className="brand">
+        <Logo />
       </div>
-    </div>
+      <div className="bar-right">
+        <span className="who">
+          {username}
+        </span>
+        <Button
+          text={dark ? "☀ Light" : "☾ Dark"}
+          onClick={toggleTheme}
+        />
+        {/* <span>{name}</span> */}
+        <Button
+          text="Log out"
+          onClick={logout}
+        />
+        <nav><NavLink to="/userContext">User Context</NavLink></nav>
+      </div>
+    </header>
   );
-}
+};
+
 
 export default Header;

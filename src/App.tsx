@@ -1,15 +1,32 @@
-import { BrowserRouter, Routes, Route } from "react-router";
-import Home from "./Pages/Home";
-import Login from "./Pages/SignIn";
+import { useState } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import './App.css'
+import Product from './components/Product';
+import Login from './Pages/Login';
+import Market from './Market';
+ 
+const router: any = createBrowserRouter([
+  
+  {
+    path: "/",
+    element: <Login/>
+  },
+  {
+    path: "/product",
+    element: <Product/>
+  },
+  {
+    path:"/market",
+    element:<Market/>
+  }
+ 
+]);
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
-  );
+return(
+<RouterProvider router={router}>
+</RouterProvider>
+)
+ 
+  
 }
-
-export default App;
+export default App

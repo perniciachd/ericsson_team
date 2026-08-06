@@ -1,82 +1,43 @@
 import React, { useEffect, useState } from "react";
-
-function Product(){
-
-    const [val,setVal] = useState<any>([]);
-
-    // async function getData(){
-
-    //         try{
-
-    //             const response = await fetch('https://jsonplaceholder.typicode.com/users');
-
-    //             const data = await response.json();
-
-    //             console.log(data);
-
-    //             setVal(data);
-
-    //         }
-
-    //         catch(error){
-
-    //             console.log(error);
-
-    //         }
-
-    // }
-
-    // getData();
-
-    useEffect(()=>{
-
-        console.log('API call');
-
-        async function getData(){
-
-            try{
-
-                const response = await fetch('https://jsonplaceholder.typicode.com/users');
-
-                const data = await response.json();
-
-                console.log(data);
-
-                setVal(data);
-
-            }
-
-            catch(error){
-
-                console.log(error);
-
-            }
-
-        }
-
-        getData();
-
-    },[])
-
-    return(
-<>
-<p>Product List</p>
-
-            {val.map((obj,key)=>{
-
-                return(
-<React.Fragment>
-<p>{obj.name}</p>
-</React.Fragment>
-
-                )
-
-            })}
-</>
-
-    )
-
-}
-
-export default Product;
+import axios from "axios";
+import SipDetails from '../molecules/SipDetails';
  
+ type Fund={
+  id:number;
+  name:string;
+  category:string;
+  nav:number;
+  risk:string;
+}
+  
+function Product(){
+  const [funds,setFunds] = useState<Fund[]>([]);
+  useEffect(()=>{
+        console.log('API called');
+        async function getData(){
+            try{
+                const {data} = await axios.get('/funds.json');
+                console.log(data);
+                setFunds(data.funds);
+            }
+            catch(error){
+                console.log(error);
+            }
+        }
+        getData();
+    },[])
+    return(
+    <>
+        {funds.map((obj)=>{
+            return(
+        <SipDetails
+        name={obj.name}
+        title={obj.category}
+        title2={obj.risk}/>
+            )
+        })
+        }
+    </>
+    )
+}
+export default Product;

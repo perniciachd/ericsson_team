@@ -1,31 +1,70 @@
-// src/Components/ExploreFunds.tsx
-import FundCard from "../atomic/FunCard";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const funds = [
-  { id: "f1", name: "Parag Parikh Flexi Cap", category: "Equity", risk: "High" as const, returnPct: 15.3 },
-  { id: "f6", name: "UTI Nifty 50 Index", category: "Index", risk: "Moderate" as const, returnPct: 12.0 },
-  { id: "f10", name: "SBI Corporate Bond", category: "Debt", risk: "Low" as const, returnPct: 4.4 },
-];
+interface Fund {
+  id: string;
+  name: string;
+  category: string;
+  nav: number;
+  return: number;
+  risk: string;
+}
 
 function ExploreFunds() {
-  return (
-    <div>
-      <h2>Explore funds</h2>
-      <p>{funds.length} funds</p>
+  const [funds, setFunds] = useState<Fund[]>([]);
+  useEffect(() => {
+    async function getFunds() {
+      try {
+        const {data} = await axios.get("/data.json");
+        setFunds(data.funds);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getFunds();
+  }, []);
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        {funds.map((fund) => (
-          <FundCard
-            key={fund.id}
-            name={fund.name}
-            category={fund.category}
-            risk={fund.risk}
-            returnPct={fund.returnPct}
-            onInvest={() => console.log(`Invest in ${fund.name}`)}
-          />
+  return (
+    <>
+      <div className="page-head">
+        <div>
+          <h2>Explore Funds</h2>
+          <div className="sub">
+            {funds.length} funds · tap one to start a SIP
+          </div>
+        </div>
+      </div>
+      <div className="list">
+        {funds.map((obj) => (
+          <button className="card-btn" key={obj.id}>
+            <span className="info">
+              <span className="fn">{obj.name}</span>
+
+              <span className="meta">
+                <span className="cat">{obj.category}</span>
+
+                <span className={`risk ${obj.risk}`}>
+                  {obj.risk} risk
+                </span>
+
+                <span>NAV ₹{obj.nav}</span>
+              </span>
+            </span>
+
+            <span className="side">
+              <span className="ret up">
+                +{obj.return}%
+                <span>1Y</span>
+              </span>
+
+              <span className="invest-hint">
+                Invest →
+              </span>
+            </span>
+          </button>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,10 +1,14 @@
-function Button({title,leftIcon,rightIcon,btnClicked,cssStyle}:any){
-    return(
-<>
-         {leftIcon?<p>Icon1</p>:null}
-<button className={cssStyle} onClick={btnClicked}>{title}</button>
-         {rightIcon?<p>Icon2</p>:null}
-</>
-    )
+interface ButtonProps {
+  text: string;
+  onClick?: () => void;
 }
+
+const Button = ({ text, onClick }: ButtonProps) => {
+  return (
+    <button className="btn" onClick={onClick}>
+      {text}
+    </button>
+  );
+};
+
 export default Button;

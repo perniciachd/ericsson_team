@@ -1,0 +1,112 @@
+{
+  "funds": [
+    {
+      "id": "f1",
+      "name": "Parag Parikh Flexi Cap",
+      "category": "Equity",
+      "nav": 78.4,
+      "ret": 15.3,
+      "risk": "High",
+      "min": 1000
+    },
+    {
+      "id": "f2",
+      "name": "Nippon India Small Cap",
+      "category": "Equity",
+      "nav": 145.8,
+      "ret": 26.4,
+      "risk": "High",
+      "min": 500
+    },
+    {
+      "id": "f3",
+      "name": "Axis Bluechip Fund",
+      "category": "Equity",
+      "nav": 54.2,
+      "ret": 18.7,
+      "risk": "High",
+      "min": 500
+    },
+    {
+      "id": "f4",
+      "name": "Mirae Asset Large Cap",
+      "category": "Equity",
+      "nav": 96.3,
+      "ret": 14.2,
+      "risk": "High",
+      "min": 1000
+    },
+    {
+      "id": "f5",
+      "name": "Kotak Emerging Equity",
+      "category": "Equity",
+      "nav": 88.2,
+      "ret": 19.1,
+      "risk": "High",
+      "min": 500
+    },
+    {
+      "id": "f6",
+      "name": "UTI Nifty 50 Index",
+      "category": "Index",
+      "nav": 128.6,
+      "ret": 12.0,
+      "risk": "Moderate",
+      "min": 500
+    },
+    {
+      "id": "f7",
+      "name": "Motilal Oswal Nasdaq 100",
+      "category": "Index",
+      "nav": 32.7,
+      "ret": 28.3,
+      "risk": "High",
+      "min": 500
+    },
+    {
+      "id": "f8",
+      "name": "HDFC Balanced Advantage",
+      "category": "Hybrid",
+      "nav": 42.1,
+      "ret": 8.1,
+      "risk": "Moderate",
+      "min": 500
+    },
+    {
+      "id": "f9",
+      "name": "DSP Gold Fund",
+      "category": "Hybrid",
+      "nav": 22.4,
+      "ret": 11.5,
+      "risk": "Moderate",
+      "min": 500
+    },
+    {
+      "id": "f10",
+      "name": "SBI Corporate Bond",
+      "category": "Debt",
+      "nav": 31.9,
+      "ret": 4.4,
+      "risk": "Low",
+      "min": 1000
+    },
+    {
+      "id": "f11",
+      "name": "Aditya Birla Liquid Fund",
+      "category": "Debt",
+      "nav": 380.4,
+      "ret": 6.9,
+      "risk": "Low",
+      "min": 1000
+    },
+    {
+      "id": "f12",
+      "name": "ICICI Pru Technology",
+      "category": "Equity",
+      "nav": 172.5,
+      "ret": 22.6,
+      "risk": "High",
+      "min": 1000
+    }
+  ]
+}
