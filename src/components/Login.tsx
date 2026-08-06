@@ -1,11 +1,15 @@
 import { useState } from "react";
 import Home from "./Home";
 import SearchBox from "./Uncontrolled";
+import { useUser } from "./context/UserContext";
+import { useNavigate } from "react-router";
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isUserAuth, setIsUserAuth] = useState(false);
+    const { changename } = useUser();
+    const navigate = useNavigate();
 
     const changeAuth = () => {
         setIsUserAuth(false);
@@ -17,6 +21,8 @@ function Login() {
 
         if (username.trim() === usernameFromLocalStorage && password.trim() === passwordFromLocalStorage) {
             setIsUserAuth(true);
+            changename(username);
+            navigate("home");
         }
     };
 

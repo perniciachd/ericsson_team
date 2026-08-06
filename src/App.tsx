@@ -1,26 +1,17 @@
 import './App.css'
-import { useState } from 'react'
-import './App.css'
-// import Greeting from './Greeting'
-// import Button from './components/Button'
-// import Card from './components/Card'
 import Login from './components/Login'
-import {createBrowserRouter} from 'react-router'
-import SignUp from './components/SignUp'
-import ZForm from './components/ZForm';
-import Inc from './components/Inc';
-import Button from './components/atomic/Button';
-import Tile from './components/atomic/Tile';
-import ActionStateForm from './components/ActionStateForm';
-import {RouterProvider} from 'react-router/dom'
+import { createBrowserRouter,RouterProvider } from 'react-router'
+import UserForm from './components/Uform'
+import { store } from "./store";
+
+// import { RouterProvider } from 'react-router'
 import Product from './Product'
 import Home from './components/Home'
+import { UserProvider } from './components/context/UserContext'
+import { Provider } from 'react-redux'
+import UserComp from './UserComp';
 
 const router: any = createBrowserRouter([
-  {
-    path: "/",
-    element: <Login />
-  },
   {
     path: "/login",
     element: <Login />
@@ -32,14 +23,25 @@ const router: any = createBrowserRouter([
   {
     path: "/home",
     element: <Home />
-  }
+  },
+    {
+    path: "/form",
+    element: <UserForm /> 
+  },
+   {
+    path: "/user",
+    element: <UserComp/>,
+  },s
 ]);
 
 function App() {
   return (
-  
+    <Provider store={store}>
+  <UserProvider>
 <RouterProvider router={router}>
        </RouterProvider>
+      </UserProvider>
+      </Provider>
        )
 }
 
