@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 import { useUserContext } from "../Context/UserContext";
 
@@ -7,7 +8,8 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { setUser } = useUserContext();
-  
+  const navigate = useNavigate();
+
 
   const handleLogin = () => {
     localStorage.setItem("username", username);
@@ -15,7 +17,7 @@ function Login() {
     setUser(username);
     setIsUserAuth(true);
     console.log("Login successful, username set in context:", username);
-    navigation.navigate("/home");
+    navigate("/home");
   };
 
   if (!isUserAuth) {

@@ -9,7 +9,7 @@ function TopBar() {
   return (
     <div>
       <span>SIP Tracker</span>
-      <span>`Welcome, ${userName}!`</span>
+      <span>Welcome, {userName}!</span>
       <DarkTheme />
       <Logout />
     </div>
