@@ -21,6 +21,7 @@ import { UserProvider } from './context/UserContext';
 import Example from './components/atomic/Example';
 import Logout from './components/atomic/LogOut';
 import UserComp from './UserComp';
+import UserForm from './components/UserForm';
 
 const router: any = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router: any = createBrowserRouter([
   {
     path: "/z",
     element: <StartSIP/>,
+  },
+  {
+    path: "/form",
+    element: <UserForm/>,
   }
 ]);
 
