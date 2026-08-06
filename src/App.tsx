@@ -1,4 +1,8 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { createBrowserRouter, Outlet } from "react-router";
+import { RouterProvider } from "react-router/dom";
+import { Provider } from "react-redux";
+import { store } from "./store";
 import './App.css'
 // import Greeting from './Greeting'
 // import Button from './components/Button'
@@ -10,6 +14,54 @@ import Inc from './components/Inc';
 import Button from './components/atomic/Button';
 import Tile from './components/atomic/Tile';
 import ActionStateForm from './components/ActionStateForm';
+import Product from './components/Product';
+import { AuthProvider } from './context/AuthContext';
+import StartSIP from './components/StartSIP';
+import { UserProvider } from './context/UserContext';
+import Example from './components/atomic/Example';
+import Logout from './components/atomic/LogOut';
+import UserComp from './UserComp';
+
+const router: any = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login/>,
+    children:[
+      {path:'abc', element:<div>Hello Child Renders</div>},
+      {path:'def', element:<div>Hello Child2 Renders</div>}
+    ]
+  },
+  {
+    path: "/product",
+    element: <Product/>,
+    children:[
+      {path:'groceries', element:<div>Hello Child Renders</div>},
+      {path:'electronis', element:<div>Hello Child2 Renders</div>}
+    ]
+  },
+    {path:'groceries', element:<div>Hello Child Renders</div>},
+  {
+    path: "/signup",
+    element: <SignUp/>,
+  },
+  {
+    path: "/",
+    element: <Logout/>,
+  },
+  {
+    path: "/user",
+    element: <UserComp/>,
+  },
+  {
+    path:'/usecontext',
+    element: <Example/>
+  },
+  {
+    path: "/z",
+    element: <StartSIP/>,
+  }
+]);
+
 
 function App() {
   const [abc, setIsUserLoggedIn] = useState(false);
@@ -30,13 +82,18 @@ function App() {
   }
   return(
     // <Inc/>
-    <>
-    {/* <Button title="Dark" leftIcon={true} rightIcon={false} btnClicked={callDark} cssStyle={class1}/>
-    <Button title="Log out" leftIcon={false} rightIcon={false} btnClicked={calllogOut} cssStyle={class1}/>
-    <Tile title="Hybrid" cssName={tileCssName}/>
-    <Tile title="High risk" cssName={tileCssName}/> */}
-    <ActionStateForm/>
-    </>
+    <Provider store={store}>
+      <UserProvider>
+    <RouterProvider router={router}>
+    </RouterProvider>
+    </UserProvider>
+    </Provider>
+      /* <Button title="Dark" leftIcon={true} rightIcon={false} btnClicked={callDark} cssStyle={class1}/>
+      <Button title="Log out" leftIcon={false} rightIcon={false} btnClicked={calllogOut} cssStyle={class1}/>
+      <Tile title="Hybrid" cssName={tileCssName}/>
+      <Tile title="High risk" cssName={tileCssName}/> 
+    <ActionStateForm/> */
+   
   )
   // if(abc){
   //   return(<Login/>)

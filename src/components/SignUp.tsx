@@ -17,7 +17,7 @@ function SignUp({isUserLoggedIn, updateFlag}:any){
         <>
             <p>SignUp</p>
             <p>{JSON.stringify(isUserLoggedIn)}</p>
-            <input type="text" placeholder="Enter your username" value={username}/>
+            <input type="text" placeholder="Enter your username" value={username} onChange={(e)=>setUsername(e.target.value)}/>
             <input type="text" placeholder="Enter your password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
             <button onClick={signup}>Signup</button>
         </>
