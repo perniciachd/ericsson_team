@@ -1,18 +1,30 @@
+import { useNavigate } from "react-router";
 import { useUserContext } from "../Context/UserContext";
+import type { ButtonHTMLAttributes, CSSProperties } from "react";
 
-function Logout() {
+type LogoutProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick"> & {
+  style?: CSSProperties;
+  onLogout?: () => void;
+};
+
+function Logout({ style, onLogout, ...rest }: LogoutProps) {
   const { setUser } = useUserContext();
-  
+  const navigate = useNavigate();
 
   const logoutClick = () => {
     console.log("logout called");
     localStorage.removeItem("username");
     localStorage.removeItem("password");
     setUser("");
-    navigation.navigate("/");
+    onLogout?.();
+    navigate("/");
   };
 
-  return <button onClick={logoutClick}>Logout</button>;
+  return (
+    <button {...rest} style={style} onClick={logoutClick}>
+      Logout
+    </button>
+  );
 }
 
 export default Logout;

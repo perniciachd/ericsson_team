@@ -2,13 +2,15 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router"
 import HomePage from "./Pages/HomePage"
 import LoginPage from "./Pages/LoginPage"
 import FundDetailsPage from "./Pages/FundDetailsPage"
-import { UserProvider } from "./Context/UserContext"
+import { ThemeProvider, UserProvider } from "./Context/UserContext"
 
 function UserLayout() {
   return (
-    <UserProvider>
-      <Outlet />
-    </UserProvider>
+    <ThemeProvider>
+      <UserProvider>
+        <Outlet />
+      </UserProvider>
+    </ThemeProvider>
   );
 }
 const router = createBrowserRouter([
