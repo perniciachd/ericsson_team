@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import SipDetails from '../molecules/SipDetails';
+// import axios from "axios";
+// import SipDetails from '../molecules/SipDetails';
  
  type Fund={
   id:number;

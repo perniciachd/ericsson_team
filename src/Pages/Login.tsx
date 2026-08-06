@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
 // import Home from "./Home";
-import Button from "../components/Button";
+import Button from "../atomic/Button";
 import Logo from "../atomic/Logo";
 import Input from "../atomic/Input";
 // import Button from "../atomic/Button";

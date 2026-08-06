@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Header from "./components/Header";
-import Button from "./components/Button";
-import ExploreFunds from "./components/ExploreFunds";
-import Dashboard from "./Dashboard";
+import Header from "../atomic/Header";
+import Button from "../atomic/Button";
+import ExploreFunds from "./ExploreFunds";
+import Dashboard from "../Dashboard";
 
 const Market = () => {
   const [activeTab, setActiveTab] = useState("funds");

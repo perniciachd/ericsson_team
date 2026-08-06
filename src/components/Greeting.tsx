@@ -1,4 +1,4 @@
-import Button from './Button'
+import Button from '../atomic/Button'
 function Greeting()
 {
 return(

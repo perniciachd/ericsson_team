@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Logo from "../atomic/Logo";
+import Logo from "./Logo";
 import Button from "./Button";
 
 // import { useUser } from "../context/UserContext";
