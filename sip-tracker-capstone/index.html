@@ -1,0 +1,419 @@
+<title>SIP Tracker — Demo App</title>
+<style>
+  :root{
+    --bg:#F4F7FA; --surface:#FFFFFF; --surface-2:#EDF2F7; --surface-3:#E4ECF3;
+    --navy:#0B1F3A; --ink:#0B1F3A; --text:#1F2A38; --muted:#586A7B; --faint:#8598A8;
+    --border:#D8E2EC; --border-strong:#C3D2DF;
+    --accent:#0E86AE; --accent-bright:#149ECA; --accent-deep:#0B6D8C; --accent-bg:#E4F3F9;
+    --gain:#177E55; --gain-bg:#E4F3EC; --loss:#C23B31; --loss-bg:#FBEBE9;
+    --warn:#9C6A12; --warn-bg:#F8EEDA;
+    --shadow:0 1px 2px rgba(11,31,58,.06),0 8px 24px rgba(11,31,58,.07);
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#091320; --surface:#0F1E2D; --surface-2:#15273A; --surface-3:#1B3047;
+      --ink:#EAF2F9; --text:#CFDBE7; --muted:#93A5B7; --faint:#5F7488;
+      --border:#22394F; --border-strong:#2E4964;
+      --accent:#37B4DC; --accent-bright:#4CC3E8; --accent-deep:#5AC8E8; --accent-bg:#102A3A;
+      --gain:#4FC190; --gain-bg:#102C24; --loss:#E97B70; --loss-bg:#331F1D;
+      --warn:#E0A445; --warn-bg:#2E2513;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#F4F7FA; --surface:#FFFFFF; --surface-2:#EDF2F7; --surface-3:#E4ECF3;
+    --ink:#0B1F3A; --text:#1F2A38; --muted:#586A7B; --faint:#8598A8;
+    --border:#D8E2EC; --border-strong:#C3D2DF;
+    --accent:#0E86AE; --accent-bright:#149ECA; --accent-deep:#0B6D8C; --accent-bg:#E4F3F9;
+    --gain:#177E55; --gain-bg:#E4F3EC; --loss:#C23B31; --loss-bg:#FBEBE9;
+    --warn:#9C6A12; --warn-bg:#F8EEDA;
+    --shadow:0 1px 2px rgba(11,31,58,.06),0 8px 24px rgba(11,31,58,.07);
+  }
+  :root[data-theme="dark"]{
+    --bg:#091320; --surface:#0F1E2D; --surface-2:#15273A; --surface-3:#1B3047;
+    --ink:#EAF2F9; --text:#CFDBE7; --muted:#93A5B7; --faint:#5F7488;
+    --border:#22394F; --border-strong:#2E4964;
+    --accent:#37B4DC; --accent-bright:#4CC3E8; --accent-deep:#5AC8E8; --accent-bg:#102A3A;
+    --gain:#4FC190; --gain-bg:#102C24; --loss:#E97B70; --loss-bg:#331F1D;
+    --warn:#E0A445; --warn-bg:#2E2513;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+    line-height:1.55;-webkit-font-smoothing:antialiased;font-size:15px}
+  .app{max-width:900px;margin:0 auto;padding:0 18px 64px}
+  .num{font-variant-numeric:tabular-nums}
+  h1,h2,h3{color:var(--ink);margin:0}
+  button{font-family:inherit}
+  @media (prefers-reduced-motion:no-preference){
+    .fade{animation:fade .22s ease}@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  }
+  button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent-bright);outline-offset:2px}
+
+  .appbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;
+    background:var(--navy);color:#fff;padding:12px 16px;box-shadow:var(--shadow)}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px}
+  .brand b{color:var(--accent-bright)}
+  .bar-right{display:flex;align-items:center;gap:6px}
+  .who{font-size:13px;color:#B7C7D8;margin-right:2px}
+  .icon-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#DDEAF5;
+    border-radius:8px;padding:6px 11px;font-size:12.5px;font-weight:600;cursor:pointer}
+  .icon-btn:hover{background:rgba(255,255,255,.16)}
+  .tabs{position:sticky;top:53px;z-index:4;display:flex;gap:4px;background:var(--bg);
+    padding:12px 0 4px;border-bottom:1px solid var(--border);margin-bottom:6px}
+  .tabs button{flex:0 0 auto;background:transparent;border:1px solid transparent;border-radius:9px;
+    padding:8px 16px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer}
+  .tabs button.on{background:var(--surface);border-color:var(--border);color:var(--ink);box-shadow:var(--shadow)}
+
+  .screen{padding-top:14px}
+  .page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .page-head h2{font-size:21px;font-weight:700;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13px;margin-top:2px}
+
+  .toolbar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  input,select{font-family:inherit;font-size:14px;color:var(--text);background:var(--surface);
+    border:1px solid var(--border);border-radius:9px;padding:9px 12px;outline:none}
+  input:hover,select:hover{border-color:var(--border-strong)}
+  input:focus,select:focus{border-color:var(--accent)}
+  .search{flex:1;min-width:150px}
+  .seg{display:flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;background:var(--surface);flex-wrap:wrap}
+  .seg button{background:transparent;border:0;font-size:12.5px;font-weight:600;padding:9px 12px;color:var(--muted);cursor:pointer}
+  .seg button.on{background:var(--accent);color:#fff}
+  .seg button+button{border-left:1px solid var(--border)}
+
+  .list{display:flex;flex-direction:column;gap:10px}
+  .card-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;width:100%;
+    background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px 16px;
+    box-shadow:var(--shadow);cursor:pointer;transition:border-color .15s,transform .1s}
+  .card-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .info{min-width:0}
+  .fn{font-weight:600;color:var(--ink);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:5px}
+  .cat{font-size:10.5px;font-weight:700;color:var(--accent-deep);background:var(--accent-bg);border-radius:6px;padding:2px 8px}
+  .risk{font-size:10.5px;font-weight:700;border-radius:999px;padding:2px 9px}
+  .risk.Low{background:var(--gain-bg);color:var(--gain)}
+  .risk.Moderate{background:var(--warn-bg);color:var(--warn)}
+  .risk.High{background:var(--loss-bg);color:var(--loss)}
+  .side{text-align:right;white-space:nowrap;flex:none}
+  .side .v{font-weight:700;color:var(--ink);font-size:15px}
+  .side .s{font-size:11.5px;color:var(--muted);margin-top:1px}
+  .up{color:var(--gain)} .down{color:var(--loss)}
+  .ret{font-size:16px;font-weight:800;letter-spacing:-.01em}
+  .ret span{font-size:10px;font-weight:600;color:var(--muted);margin-left:4px}
+  .invest-hint{font-size:11.5px;font-weight:700;color:var(--accent);margin-top:4px}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+  @media(max-width:520px){.stats{grid-template-columns:1fr}}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:13px 15px;box-shadow:var(--shadow)}
+  .stat .l{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .stat .v{font-size:22px;font-weight:700;color:var(--ink);margin-top:3px;letter-spacing:-.01em}
+  .stat .g{font-size:12.5px;font-weight:600;margin-top:1px}
+
+  .empty{text-align:center;padding:46px 20px;background:var(--surface);border:1px dashed var(--border-strong);border-radius:14px}
+  .empty .em{font-size:34px}
+  .empty h3{font-size:17px;margin:10px 0 4px}
+  .empty p{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+
+  .btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:11px 16px;font-size:14px;font-weight:600;cursor:pointer;transition:filter .15s}
+  .btn:hover{filter:brightness(1.06)}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .btn.danger{background:var(--loss)}
+  .btn.block{width:100%}.btn.lg{padding:12px 18px}
+
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px}
+  .card.narrow{max-width:400px;margin:6vh auto 0}
+  .form-grid{display:flex;flex-direction:column;gap:14px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:480px){.row2{grid-template-columns:1fr}}
+  .field{display:flex;flex-direction:column;gap:5px}
+  .field label{font-size:12px;font-weight:600;color:var(--muted)}
+  .field input,.field select{width:100%}
+  .field .err{font-size:11.5px;color:var(--loss);font-weight:500}
+  .field.bad input,.field.bad select{border-color:var(--loss);background:var(--loss-bg)}
+  .form-actions{display:flex;gap:10px;margin-top:4px}.form-actions .btn{flex:1}
+
+  .fundsum{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface-2);
+    border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:4px}
+  .fundsum .fn{font-size:15px}
+  .fundsum .r{text-align:right}
+
+  .back{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:var(--accent);
+    font-size:13px;font-weight:600;cursor:pointer;padding:4px 0;margin-bottom:6px}
+  .detail-hero{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}
+  .detail-hero .name{font-size:19px;font-weight:700;color:var(--ink)}
+  .detail-hero .tags{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .detail-hero .big{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.02em;text-align:right}
+  .detail-hero .bg{font-size:13px;font-weight:600;text-align:right;margin-top:2px}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:14px;border-top:1px solid var(--border);padding-top:16px}
+  .kv .k{color:var(--muted)}.kv .val{text-align:right;color:var(--text);font-weight:600}
+
+  .hint{font-size:12.5px;color:var(--muted);text-align:center;margin-top:14px}
+  .hint code{font-family:var(--mono);background:var(--surface-2);padding:1px 6px;border-radius:5px;color:var(--accent-deep)}
+  .login-logo{text-align:center;margin-bottom:20px}
+  .login-logo .b{font-weight:800;font-size:22px;color:var(--ink)}.login-logo .b b{color:var(--accent)}
+  .login-logo .t{font-size:13px;color:var(--muted);margin-top:4px}
+  .form-err{background:var(--loss-bg);color:var(--loss);font-size:12.5px;font-weight:600;border-radius:9px;padding:9px 12px;text-align:center}
+</style>
+
+<div class="app" id="app"></div>
+
+<script>
+(function(){
+  var HK="sip.tracker.holdings.v2", THEME="sip.tracker.theme", AUTH="sip.tracker.auth";
+  var inr=new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0});
+  var inr2=new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",minimumFractionDigits:2,maximumFractionDigits:2});
+  var money=function(n){return inr.format(Math.round(n));};
+  var nav=function(n){return inr2.format(n);};
+  var pct=function(n){return (n>=0?"+":"")+n.toFixed(1)+"%";};
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});};
+
+  var CATS=["Equity","Debt","Hybrid","Index"];
+
+  // ---- the market: available funds (catalog, not user data) ----
+  var FUNDS=[
+    {id:"f1",name:"Parag Parikh Flexi Cap",category:"Equity",nav:78.40,ret:15.3,risk:"High",min:1000},
+    {id:"f2",name:"Nippon India Small Cap",category:"Equity",nav:145.80,ret:26.4,risk:"High",min:500},
+    {id:"f3",name:"Axis Bluechip Fund",category:"Equity",nav:54.20,ret:18.7,risk:"High",min:500},
+    {id:"f4",name:"Mirae Asset Large Cap",category:"Equity",nav:96.30,ret:14.2,risk:"High",min:1000},
+    {id:"f5",name:"Kotak Emerging Equity",category:"Equity",nav:88.20,ret:19.1,risk:"High",min:500},
+    {id:"f6",name:"UTI Nifty 50 Index",category:"Index",nav:128.60,ret:12.0,risk:"Moderate",min:500},
+    {id:"f7",name:"Motilal Oswal Nasdaq 100",category:"Index",nav:32.70,ret:28.3,risk:"High",min:500},
+    {id:"f8",name:"HDFC Balanced Advantage",category:"Hybrid",nav:42.10,ret:8.1,risk:"Moderate",min:500},
+    {id:"f9",name:"DSP Gold Fund",category:"Hybrid",nav:22.40,ret:11.5,risk:"Moderate",min:500},
+    {id:"f10",name:"SBI Corporate Bond",category:"Debt",nav:31.90,ret:4.4,risk:"Low",min:1000},
+    {id:"f11",name:"Aditya Birla Liquid Fund",category:"Debt",nav:380.40,ret:6.9,risk:"Low",min:1000},
+    {id:"f12",name:"ICICI Pru Technology",category:"Equity",nav:172.50,ret:22.6,risk:"High",min:1000}
+  ];
+  var fundById=function(id){for(var i=0;i<FUNDS.length;i++)if(FUNDS[i].id===id)return FUNDS[i];return null;};
+
+  // ---- user holdings (persisted) ----
+  var SEED=[
+    {id:"h1",fundId:"f1",amount:10000,frequency:"monthly",installments:12,startDate:"2023-06-01"},
+    {id:"h2",fundId:"f3",amount:5000,frequency:"monthly",installments:12,startDate:"2023-09-01"},
+    {id:"h3",fundId:"f8",amount:3000,frequency:"monthly",installments:12,startDate:"2023-01-01"}
+  ];
+  function loadHoldings(){try{var r=localStorage.getItem(HK);if(r)return JSON.parse(r);}catch(e){}localStorage.setItem(HK,JSON.stringify(SEED));return SEED.slice();}
+  function saveHoldings(){localStorage.setItem(HK,JSON.stringify(holdings));}
+  var holdings=loadHoldings();
+
+  var invested=function(h){return h.amount*h.installments;};
+  var valueOf=function(h){var f=fundById(h.fundId);return Math.round(invested(h)*(1+(f?f.ret:0)/100));};
+  var gainAmt=function(h){return valueOf(h)-invested(h);};
+  var gainPct=function(h){var i=invested(h);return i?gainAmt(h)/i*100:0;};
+
+  var state={
+    screen: sessionStorage.getItem(AUTH)?"market":"login",
+    user: sessionStorage.getItem(AUTH)||"",
+    mQuery:"", mCat:"all", pQuery:"", pCat:"all",
+    investFund:null, editId:null, form:null, formErr:null,
+    viewId:null, confirmDel:false, loginErr:false
+  };
+  var app=document.getElementById("app");
+
+  (function(){var t=localStorage.getItem(THEME);if(t)document.documentElement.setAttribute("data-theme",t);})();
+  function curTheme(){var c=document.documentElement.getAttribute("data-theme");return c||(window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");}
+  function toggleTheme(){var n=curTheme()==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);localStorage.setItem(THEME,n);render();}
+  function themeLabel(){return curTheme()==="dark"?"☀ Light":"☾ Dark";}
+
+  function appbar(){
+    return '<div class="appbar"><span class="brand">📈 SIP<b>Tracker</b></span>'+
+      '<span class="bar-right"><span class="who">'+esc(state.user||"You")+'</span>'+
+      '<button class="icon-btn" data-act="theme">'+themeLabel()+'</button>'+
+      '<button class="icon-btn" data-act="logout">Log out</button></span></div>';
+  }
+  function tabs(active){
+    return '<div class="tabs">'+
+      '<button data-act="tab" data-tab="market"'+(active==="explore"?' class="on"':'')+'>Explore funds</button>'+
+      '<button data-act="tab" data-tab="portfolio"'+(active==="portfolio"?' class="on"':'')+'>My portfolio</button>'+
+    '</div>';
+  }
+
+  function loginView(){
+    return '<div class="screen fade"><div class="card narrow">'+
+      '<div class="login-logo"><div class="b">📈 SIP<b>Tracker</b></div><div class="t">Sign in to explore funds and invest</div></div>'+
+      (state.loginErr?'<div class="form-err" style="margin-bottom:14px">Enter a username and password</div>':'')+
+      '<form id="login" class="form-grid">'+
+        '<div class="field"><label>Username</label><input name="username" placeholder="Enter your username" autocomplete="off"></div>'+
+        '<div class="field"><label>Password</label><input name="password" type="password" placeholder="••••••••"></div>'+
+        '<button class="btn block lg" type="submit">Log in</button></form>'+
+      '<div class="hint">Demo — any username and password works. Data saves in <code>localStorage</code>.</div>'+
+      '<div style="text-align:center;margin-top:12px"><button class="icon-btn" data-act="theme" style="background:var(--surface-2);color:var(--muted);border-color:var(--border)">'+themeLabel()+'</button></div>'+
+    '</div></div>';
+  }
+
+  // ---------- MARKET (landing) ----------
+  function fundCard(f){
+    return '<button class="card-btn" data-act="invest" data-id="'+f.id+'">'+
+      '<span class="info"><span class="fn">'+esc(f.name)+'</span>'+
+        '<span class="meta"><span class="cat">'+f.category+'</span><span class="risk '+f.risk+'">'+f.risk+' risk</span>'+
+          '<span>NAV '+nav(f.nav)+'</span></span></span>'+
+      '<span class="side"><span class="ret up num">'+pct(f.ret)+'<span>1Y</span></span>'+
+        '<span class="invest-hint">Invest →</span></span></button>';
+  }
+  function marketList(){
+    var q=state.mQuery.trim().toLowerCase();
+    var rows=FUNDS.filter(function(f){
+      if(state.mCat!=="all"&&f.category!==state.mCat)return false;
+      if(q&&f.name.toLowerCase().indexOf(q)<0)return false;return true;});
+    if(!rows.length)return '<div class="empty"><div class="em">🔍</div><h3>No funds match</h3><p>Try a different search or category.</p></div>';
+    return '<div class="list">'+rows.map(fundCard).join("")+'</div>';
+  }
+  function marketView(){
+    var seg=["all"].concat(CATS).map(function(c){var l=c==="all"?"All":c;
+      return '<button data-act="mcat" data-cat="'+c+'"'+(state.mCat===c?' class="on"':'')+'>'+l+'</button>';}).join("");
+    return appbar()+tabs("explore")+'<div class="screen fade">'+
+      '<div class="page-head"><div><h2>Explore funds</h2><div class="sub">'+FUNDS.length+' funds · tap one to start a SIP</div></div></div>'+
+      '<div class="toolbar"><input class="search" id="msearch" placeholder="Search funds…" value="'+esc(state.mQuery)+'"><div class="seg">'+seg+'</div></div>'+
+      '<div id="market-list">'+marketList()+'</div></div>';
+  }
+
+  // ---------- INVEST form ----------
+  function investView(){
+    var editing=!!state.editId;
+    var f=fundById(state.investFund)||FUNDS[0];
+    var s=state.form||{fundId:f.id,amount:String(f.min),frequency:"monthly",installments:"12",startDate:""};
+    var e=state.formErr||{};
+    function fc(k){return 'field'+(e[k]?' bad':'');}function fErr(k){return e[k]?'<span class="err">'+e[k]+'</span>':'';}
+    var opts=FUNDS.map(function(x){return '<option value="'+x.id+'"'+(x.id===s.fundId?' selected':'')+'>'+esc(x.name)+'</option>';}).join("");
+    return appbar()+tabs("explore")+'<div class="screen fade"><div class="card" style="max-width:560px;margin:0 auto">'+
+      '<button class="back" data-act="tab" data-tab="market">← Back to funds</button>'+
+      '<h2 style="font-size:19px;margin-bottom:14px">'+(editing?"Edit investment":"Start a SIP")+'</h2>'+
+      '<div class="fundsum"><div><div class="fn">'+esc(f.name)+'</div>'+
+        '<div class="meta"><span class="cat">'+f.category+'</span><span class="risk '+f.risk+'">'+f.risk+'</span></div></div>'+
+        '<div class="r"><div class="ret up num">'+pct(f.ret)+'<span>1Y</span></div><div class="s num">NAV '+nav(f.nav)+'</div></div></div>'+
+      '<form id="invest" class="form-grid">'+
+        '<div class="field"><label>Fund</label><select name="fundId">'+opts+'</select></div>'+
+        '<div class="row2">'+
+          '<div class="'+fc("amount")+'"><label>SIP amount (₹)</label><input name="amount" type="number" value="'+esc(s.amount)+'" placeholder="'+f.min+'">'+fErr("amount")+'</div>'+
+          '<div class="field"><label>Frequency</label><select name="frequency"><option'+(s.frequency==="monthly"?" selected":"")+'>monthly</option><option'+(s.frequency==="quarterly"?" selected":"")+'>quarterly</option></select></div>'+
+        '</div>'+
+        '<div class="row2">'+
+          '<div class="'+fc("installments")+'"><label>Installments paid</label><input name="installments" type="number" value="'+esc(s.installments)+'" placeholder="12">'+fErr("installments")+'</div>'+
+          '<div class="field"><label>Start date</label><input name="startDate" type="date" value="'+esc(s.startDate)+'"></div>'+
+        '</div>'+
+        '<div class="form-actions"><button class="btn" type="submit">'+(editing?"Save changes":"Confirm investment")+'</button>'+
+          '<button class="btn ghost" type="button" data-act="tab" data-tab="'+(editing?"portfolio":"market")+'">Cancel</button></div>'+
+      '</form>'+
+      '<div class="hint">Min for this fund: <b>'+money(f.min)+'</b>/'+ 'installment.</div>'+
+    '</div></div>';
+  }
+
+  // ---------- PORTFOLIO ----------
+  function holdingRow(h){
+    var f=fundById(h.fundId),g=gainPct(h),cls=g>=0?"up":"down";
+    return '<button class="card-btn" data-act="open" data-id="'+h.id+'">'+
+      '<span class="info"><span class="fn">'+esc(f?f.name:"—")+'</span>'+
+        '<span class="meta"><span class="cat">'+(f?f.category:"")+'</span>'+
+          '<span>'+money(h.amount)+'/'+(h.frequency==="monthly"?"mo":"qtr")+'</span>'+
+          '<span>'+h.installments+' paid</span></span></span>'+
+      '<span class="side"><span class="v num">'+money(valueOf(h))+'</span><span class="g '+cls+' s num">'+pct(g)+'</span></span></button>';
+  }
+  function portList(){
+    var q=state.pQuery.trim().toLowerCase();
+    var rows=holdings.filter(function(h){var f=fundById(h.fundId);
+      if(state.pCat!=="all"&&(!f||f.category!==state.pCat))return false;
+      if(q&&(!f||f.name.toLowerCase().indexOf(q)<0))return false;return true;});
+    if(!holdings.length)return '<div class="empty"><div class="em">🌱</div><h3>No investments yet</h3><p>Explore funds and start your first SIP.</p><button class="btn" data-act="tab" data-tab="market">Explore funds</button></div>';
+    if(!rows.length)return '<div class="empty"><div class="em">🔍</div><h3>No holdings match</h3><p>Try a different search or category.</p></div>';
+    return '<div class="list">'+rows.map(holdingRow).join("")+'</div>';
+  }
+  function portfolioView(){
+    var t=holdings.reduce(function(a,h){a.inv+=invested(h);a.val+=valueOf(h);return a;},{inv:0,val:0});
+    var g=t.val-t.inv,gp=t.inv?g/t.inv*100:0,cls=g>=0?"up":"down";
+    var seg=["all"].concat(CATS).map(function(c){var l=c==="all"?"All":c;
+      return '<button data-act="pcat" data-cat="'+c+'"'+(state.pCat===c?' class="on"':'')+'>'+l+'</button>';}).join("");
+    return appbar()+tabs("portfolio")+'<div class="screen fade">'+
+      '<div class="page-head"><div><h2>My portfolio</h2><div class="sub">'+holdings.length+' investment'+(holdings.length===1?"":"s")+'</div></div>'+
+        '<button class="btn" data-act="tab" data-tab="market">+ Invest</button></div>'+
+      '<div class="stats">'+
+        '<div class="stat"><div class="l">Invested</div><div class="v num">'+money(t.inv)+'</div></div>'+
+        '<div class="stat"><div class="l">Value today</div><div class="v num">'+money(t.val)+'</div></div>'+
+        '<div class="stat"><div class="l">Total gain</div><div class="v num '+cls+'">'+money(g)+'</div><div class="g '+cls+' num">'+pct(gp)+'</div></div></div>'+
+      (holdings.length?'<div class="toolbar"><input class="search" id="psearch" placeholder="Search your funds…" value="'+esc(state.pQuery)+'"><div class="seg">'+seg+'</div></div>':'')+
+      '<div id="port-list">'+portList()+'</div></div>';
+  }
+
+  // ---------- HOLDING detail ----------
+  function holdingView(){
+    var h=null;for(var i=0;i<holdings.length;i++)if(holdings[i].id===state.viewId)h=holdings[i];
+    if(!h)return appbar()+tabs("portfolio")+'<div class="screen fade"><div class="card" style="max-width:460px;margin:6vh auto;text-align:center"><div style="font-size:34px">🧭</div><h2 style="margin:8px 0 4px">Investment not found</h2><p style="color:var(--muted);font-size:14px">It may have been redeemed.</p><button class="btn" data-act="tab" data-tab="portfolio" style="margin-top:6px">Back to portfolio</button></div></div>';
+    var f=fundById(h.fundId),g=gainAmt(h),gp=gainPct(h),cls=g>=0?"up":"down";
+    var actions=state.confirmDel
+      ?'<div class="form-actions"><button class="btn danger" data-act="del-yes" style="flex:1">Confirm redeem</button><button class="btn ghost" data-act="del-no" style="flex:1">Cancel</button></div>'
+      :'<div class="form-actions"><button class="btn ghost" data-act="edit" style="flex:1">Edit</button><button class="btn danger" data-act="del" style="flex:1">Redeem</button></div>';
+    return appbar()+tabs("portfolio")+'<div class="screen fade"><div class="card" style="max-width:560px;margin:0 auto">'+
+      '<button class="back" data-act="tab" data-tab="portfolio">← Back to portfolio</button>'+
+      '<div class="detail-hero"><div><div class="name">'+esc(f?f.name:"—")+'</div>'+
+        '<div class="tags"><span class="cat">'+(f?f.category:"")+'</span><span class="risk '+(f?f.risk:"")+'">'+(f?f.risk:"")+' risk</span></div></div>'+
+        '<div><div class="big num">'+money(valueOf(h))+'</div><div class="bg '+cls+' num">'+money(g)+' · '+pct(gp)+'</div></div></div>'+
+      '<div class="kv">'+
+        '<span class="k">SIP amount</span><span class="val num">'+money(h.amount)+' / '+h.frequency+'</span>'+
+        '<span class="k">Installments paid</span><span class="val num">'+h.installments+'</span>'+
+        '<span class="k">Invested</span><span class="val num">'+money(invested(h))+'</span>'+
+        '<span class="k">Value today</span><span class="val num">'+money(valueOf(h))+'</span>'+
+        '<span class="k">Current NAV</span><span class="val num">'+(f?nav(f.nav):"—")+'</span>'+
+        '<span class="k">Started</span><span class="val num">'+(h.startDate||"—")+'</span></div>'+
+      '<div style="margin-top:18px">'+actions+'</div></div></div>';
+  }
+
+  function render(){
+    var v={login:loginView,market:marketView,invest:investView,portfolio:portfolioView,holding:holdingView}[state.screen];
+    app.innerHTML=v?v():marketView();
+  }
+  function go(s){state.screen=s;state.confirmDel=false;render();window.scrollTo(0,0);}
+
+  function readForm(f){var d={};["fundId","amount","frequency","installments","startDate"].forEach(function(k){d[k]=f.elements[k].value;});return d;}
+  function validate(d){var e={},f=fundById(d.fundId);
+    if(!(Number(d.amount)>0))e.amount="Amount must be greater than 0";
+    else if(f&&Number(d.amount)<f.min)e.amount="Minimum is "+money(f.min);
+    if(d.installments===""||Number(d.installments)<1||!Number.isInteger(Number(d.installments)))e.installments="Enter 1 or more";
+    return e;}
+  function saveInvest(f){
+    var d=readForm(f),e=validate(d);
+    if(Object.keys(e).length){state.form=d;state.formErr=e;render();return;}
+    var rec={fundId:d.fundId,amount:Number(d.amount),frequency:d.frequency,installments:Number(d.installments),startDate:d.startDate};
+    if(state.editId){holdings=holdings.map(function(h){return h.id===state.editId?Object.assign({},h,rec):h;});}
+    else{rec.id="h"+Date.now();holdings=holdings.concat(rec);}
+    saveHoldings();state.form=null;state.formErr=null;state.editId=null;go("portfolio");
+  }
+
+  app.addEventListener("click",function(ev){
+    var el=ev.target.closest("[data-act]");if(!el)return;var act=el.getAttribute("data-act");
+    if(act==="theme")return toggleTheme();
+    if(act==="logout"){sessionStorage.removeItem(AUTH);state.user="";go("login");return;}
+    if(act==="tab"){var t=el.getAttribute("data-tab");state.form=null;state.formErr=null;state.editId=null;go(t);return;}
+    if(act==="mcat"){state.mCat=el.getAttribute("data-cat");render();return;}
+    if(act==="pcat"){state.pCat=el.getAttribute("data-cat");render();return;}
+    if(act==="invest"){state.investFund=el.getAttribute("data-id");state.editId=null;state.form=null;state.formErr=null;go("invest");return;}
+    if(act==="open"){state.viewId=el.getAttribute("data-id");go("holding");return;}
+    if(act==="edit"){var h=null,i;for(i=0;i<holdings.length;i++)if(holdings[i].id===state.viewId)h=holdings[i];
+      state.editId=state.viewId;state.investFund=h.fundId;state.form={fundId:h.fundId,amount:String(h.amount),frequency:h.frequency,installments:String(h.installments),startDate:h.startDate};state.formErr=null;go("invest");return;}
+    if(act==="del"){state.confirmDel=true;render();return;}
+    if(act==="del-no"){state.confirmDel=false;render();return;}
+    if(act==="del-yes"){holdings=holdings.filter(function(h){return h.id!==state.viewId;});saveHoldings();state.viewId=null;go("portfolio");return;}
+  });
+
+  app.addEventListener("input",function(ev){
+    if(ev.target.id==="msearch"){state.mQuery=ev.target.value;var b=document.getElementById("market-list");if(b)b.innerHTML=marketList();}
+    if(ev.target.id==="psearch"){state.pQuery=ev.target.value;var p=document.getElementById("port-list");if(p)p.innerHTML=portList();}
+  });
+
+  app.addEventListener("change",function(ev){
+    if(state.screen==="invest"&&ev.target.name==="fundId"){
+      var form=ev.target.form;state.form=readForm(form);state.investFund=ev.target.value;
+      var f=fundById(ev.target.value);if(f&&(!state.form.amount||Number(state.form.amount)<f.min))state.form.amount=String(f.min);
+      state.formErr=null;render();
+    }
+  });
+
+  app.addEventListener("submit",function(ev){
+    ev.preventDefault();
+    if(ev.target.id==="login"){var u=ev.target.elements.username.value.trim(),p=ev.target.elements.password.value;
+      if(!u||!p){state.loginErr=true;render();return;}state.loginErr=false;state.user=u;sessionStorage.setItem(AUTH,u);go("market");return;}
+    if(ev.target.id==="invest"){saveInvest(ev.target);return;}
+  });
+
+  render();
+})();
+</script>

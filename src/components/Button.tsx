@@ -1,12 +1,6 @@
-import Card from "./Card"
-
 function Button(){
-    return (
-        <>
-        <Card/>
-        <button onClick={()=>console.log('Clicked')}>Click Me</button>
-        </>
+    return(
+        <button onClick={()=> console.log('Clicked me')}>Click me</button>
     )
 }
-
-export default Button
+export default Button;
