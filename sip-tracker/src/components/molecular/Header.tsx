@@ -21,7 +21,10 @@ function Header() {
         </label>
         <Button
           title="Logout"
-          btnClicked={() => navigate('/')}
+          btnClicked={() => {
+            sessionStorage.removeItem('username');
+            navigate('/', { replace: true });
+          }}
         />
       </div>
     </nav>

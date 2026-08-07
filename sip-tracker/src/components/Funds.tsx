@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Tile from "./atomic/Tile";
+import Tile from "./molecular/Sip";
 
 function Funds() {
     const [fundData, setData] = useState<{ title: string; type: string; risk: string; nav: number; toatalReturn: string; timeDuration: string }[]>([]);
     useEffect(() => {
         async function fetchFundsData() {
             try {
+                if(sessionStorage.getItem('username')){
                 const response = await axios.get('/public/data/funds.json');
                 const { data } = response;
                 setData(data.funds);
-            }
-            catch (error) {
+                }
+            } catch (error) {
                 console.log(error);
             }
+            
         }
         fetchFundsData();
     }, []);

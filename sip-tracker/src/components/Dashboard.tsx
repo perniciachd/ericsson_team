@@ -7,8 +7,11 @@ function Dashboard() {
     const location = useLocation();
 
     useEffect(() => {
-        if (location.pathname === '/dashboard') {
+        if (location.pathname === '/dashboard' && sessionStorage.getItem('username')) {
             navigate('/dashboard/funds', { replace: true });
+        }
+        else if (!sessionStorage.getItem('username')) {
+            navigate('/', { replace: true });
         }
     }, [location.pathname, navigate]);
 

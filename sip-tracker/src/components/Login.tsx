@@ -15,6 +15,7 @@ const handleLogin = () => {
     const password = (document.getElementById('password') as HTMLInputElement).value;
     if (username === env_username && password === env_password) {
         onLogin?.();
+        sessionStorage.setItem('username', username);
         navigate('/dashboard');
     }
     else{

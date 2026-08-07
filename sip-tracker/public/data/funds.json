@@ -53,7 +53,8 @@
     {
       "id": 1,
       "title": "Parag Parikh Flexi Cap",
-      "type": "Flexi Cap",
+      "type": "Equity",
+      "risk": "High Risk",
       "investmentType": "SIP",
       "sipAmount": 5000,
       "sipFrequency": "Monthly",
@@ -67,7 +68,8 @@
     {
       "id": 2,
       "title": "Nippon India Small Cap",
-      "type": "Small Cap",
+      "type": "Equity",
+      "risk": "High Risk",
       "investmentType": "SIP",
       "sipAmount": 5000,
       "sipFrequency": "Monthly",
@@ -81,7 +83,8 @@
     {
       "id": 3,
       "title": "Axis Bluechip Fund",
-      "type": "Large Cap",
+      "type": "Equity",
+      "risk": "High Risk",
       "investmentType": "SIP",
       "sipAmount": 5000,
       "sipFrequency": "Monthly",

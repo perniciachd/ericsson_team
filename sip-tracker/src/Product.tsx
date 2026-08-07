@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useUser } from "./UserProvider";
 import axios from "axios";
 function Product(){
     const [val,setVal] = useState<{ name: string }[]>([]);
+    const {name, setName} = useUser();
+    const click = () => {
+        console.log('Before Change:', name);
+        setName('Imran Khan');       
+    }
+    useEffect(()=>{
+        console.log('Name changed:', name);
+    },[name])
+
     useEffect(()=>{
         console.log('API call');
         async function getData(){
@@ -28,7 +38,9 @@ function Product(){
                 <p>{obj.name}</p>
             </React.Fragment>
         )
-    })}          
+    })}
+    <span>Welcome {name}</span><br></br>
+    <button onClick={click}>Click Me</button>
     </>
     )
 }

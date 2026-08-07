@@ -5,7 +5,9 @@ import Layout from "./components/Layout";
 import Funds from "./components/Funds";
 import Portfolio from "./components/Portfolio";
 import TypeList from "./components/TypeList";
+import UserForm from "./components/UserFrom";
 import Product from "./Product";
+
  
 const router = createBrowserRouter([
   {
@@ -27,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/product",
         element: <Product/>,
+      },
+      {
+        path: "/form",
+        element: <UserForm/>,
       },
     ],
   },
