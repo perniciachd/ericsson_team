@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router"
 import HomePage from "./Pages/HomePage"
 import LoginPage from "./Pages/LoginPage"
 import FundDetailsPage from "./Pages/FundDetailsPage"
+import MyPortfolio from "./Pages/MyPortfolio"
 import { ThemeProvider, UserProvider } from "./Context/UserContext"
 
 function UserLayout() {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <LoginPage/>
+      },
+      {
+        path: "/my-portfolio",
+        element: <MyPortfolio />
       },
       {
         path: "/fund-details",

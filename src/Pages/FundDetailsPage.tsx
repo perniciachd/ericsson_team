@@ -45,7 +45,7 @@ function FundDetailsPage() {
     }
   }, [location]);
 
-  const { register, handleSubmit, formState } = useForm<FormValues>({
+  const { register, handleSubmit, formState} = useForm<FormValues>({
     defaultValues: { amount: 1000, installments: 12, frequency: "Monthly", startDate: "" },
   });
 
