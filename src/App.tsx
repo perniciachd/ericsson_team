@@ -1,6 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router"
 import Login from "./components/Login/Login"
 import ExploreFunds from "./components/exploreFunds/exploreFunds"
+import Invest from "./components/Invest/Invest"
+import { AuthProvider } from "./context/AuthContext"
+import { ThemeProvider } from "./context/ThemeContext"
+import Portfolio from "./components/portfolio/Portfolio"
 
 const router = createBrowserRouter([
   {
@@ -12,6 +16,14 @@ const router = createBrowserRouter([
     element: <ExploreFunds/>
   },
   {
+    path: "/portfolio",
+    element: <Portfolio/>
+  },
+  {
+    path: "/invest",
+    element: <Invest/>
+  },
+  {
     path: "/",
     element: <Login/>
   }
@@ -19,7 +31,11 @@ const router = createBrowserRouter([
 function App() {
   return(
     <>
-      <RouterProvider router={router}></RouterProvider>
+	 	<ThemeProvider>
+			<AuthProvider>
+				<RouterProvider router={router}></RouterProvider>
+			</AuthProvider>
+		</ThemeProvider>
     </>
   )
 }

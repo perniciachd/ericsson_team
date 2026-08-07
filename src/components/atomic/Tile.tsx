@@ -1,7 +1,7 @@
-function Tile({title, styleClass}: any) {
+function Tile({title, styleClass}: { title: string; styleClass?: string }) {
 	return(
 		<>
-			<span className={styleClass}>{title}</span>
+			<p className={styleClass}>{title}</p>
 		</>
 	)
 }
