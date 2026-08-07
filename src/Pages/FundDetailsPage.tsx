@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -45,7 +45,7 @@ function FundDetailsPage() {
     }
   }, [location]);
 
-  const { register, handleSubmit, formState } = useForm<FormValues>({
+  const { register, handleSubmit } = useForm<FormValues>({
     defaultValues: { amount: 1000, installments: 12, frequency: "Monthly", startDate: "" },
   });
 

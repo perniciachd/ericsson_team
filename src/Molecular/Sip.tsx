@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FundCard from "../Atomic/FundCard";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 type Fund = {
   id: number;

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/UserContext";
 import type { ButtonHTMLAttributes, CSSProperties } from "react";
 
