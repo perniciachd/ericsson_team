@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "fundName": "Parag Parikh Flexi Cap Fund",
+    "category": "Equity",
+    "risk": "High Risk",
+    "nav": 78.4,
+    "returns": 15.3,
+    "expenseRatio": 0.78,
+    "minSip": 500,
+    "aum": "₹92,500 Cr"
+  },
+  {
+    "id": 2,
+    "fundName": "Nippon India Small Cap Fund",
+    "category": "Equity",
+    "risk": "High Risk",
+    "nav": 145.8,
+    "returns": 26.4,
+    "expenseRatio": 0.91,
+    "minSip": 500,
+    "aum": "₹64,200 Cr"
+  },
+  {
+    "id": 3,
+    "fundName": "Axis Bluechip Fund",
+    "category": "Equity",
+    "risk": "Moderate Risk",
+    "nav": 54.2,
+    "returns": 18.7,
+    "expenseRatio": 0.65,
+    "minSip": 1000,
+    "aum": "₹37,100 Cr"
+  },
+  {
+    "id": 4,
+    "fundName": "HDFC Balanced Advantage Fund",
+    "category": "Hybrid",
+    "risk": "Moderate Risk",
+    "nav": 412.3,
+    "returns": 12.9,
+    "expenseRatio": 0.82,
+    "minSip": 100,
+    "aum": "₹98,600 Cr"
+  },
+  {
+    "id": 5,
+    "fundName": "ICICI Prudential Bluechip Fund",
+    "category": "Equity",
+    "risk": "Moderate Risk",
+    "nav": 96.4,
+    "returns": 16.1,
+    "expenseRatio": 0.84,
+    "minSip": 100,
+    "aum": "₹52,400 Cr"
+  },
+  {
+    "id": 6,
+    "fundName": "SBI Small Cap Fund",
+    "category": "Equity",
+    "risk": "High Risk",
+    "nav": 183.2,
+    "returns": 24.8,
+    "expenseRatio": 0.95,
+    "minSip": 500,
+    "aum": "₹41,000 Cr"
+  }
+]
