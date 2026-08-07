@@ -1,7 +1,7 @@
-interface TabsProps {
+type TabsProps = {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-}
+};
 
 
 const Tabs = ({ activeTab, setActiveTab }: TabsProps) => {

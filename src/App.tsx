@@ -9,6 +9,7 @@ import { ThemeProvider } from './context/UseTheme.tsx';
 
 import "./index.css";
 import Example from "./components/Example";
+import { UserProvider } from "./context/UserContext.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,10 +28,12 @@ const router = createBrowserRouter([
 
 function App() {
  return(
+  <UserProvider>
   <ThemeProvider>
   <RouterProvider router={router}>
        </RouterProvider>
        </ThemeProvider>
+       </UserProvider>
  )
 }
  

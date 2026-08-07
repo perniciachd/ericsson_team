@@ -2,16 +2,13 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import Logo from "./atomic/Logo";
 import Button from "./atomic/Button";
+import useTheme from "../context/UseTheme";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [dark,setDark] = useState(false);
+  const { dark, Theme } = useTheme();
   const username =
-    sessionStorage.getItem("sip.tracker.auth") || "admin";
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle("dark");
-    setDark(!dark);
-  };
+    sessionStorage.getItem("sip.tracker.auth");
   const logout = () => {
     sessionStorage.removeItem("sip.tracker.auth");
     navigate("/");
@@ -26,9 +23,9 @@ const Header = () => {
           {username}
         </span>
         <Button
-          text={dark ? "Light" : " Dark"}
-          onClick={toggleTheme}
-        />
+        text={dark ? "Light" : "Dark"}
+        onClick={Theme}
+      />
         <Button
           text="Log out"
           onClick={logout}

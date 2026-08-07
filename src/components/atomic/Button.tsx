@@ -1,15 +1,15 @@
-interface ButtonProps {
+type ButtonProps = {
   text: string;
   type?: string
-  onClick?: () => void;
-}
+  onClick: () => void;
+};
 
-const Button = ({ text, onClick }: ButtonProps) => {
+function Button({ text, onClick }: ButtonProps) {
   return (
-    <button className="btn" onClick={onClick}>
+    <button className="btn"  onClick={onClick}>
       {text}
     </button>
   );
-};
+}
 
 export default Button;

@@ -12,7 +12,6 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //const [dark, setDark] = useState(false);
 
   const { dark, Theme } = useTheme();
 
