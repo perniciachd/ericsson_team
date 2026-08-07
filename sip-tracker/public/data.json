@@ -101,47 +101,67 @@
     ],
 
   "myFunds": [
-    {
-      "id": 1,
-      "fundName": "Mirae Asset Large Cap Fund",
-      "category": "Equity",
-      "risk": "Moderate Risk",
-      "nav": 98.74,
-      "returns": 14.25
-    },
-    {
-      "id": 2,
-      "fundName": "Parag Parikh Flexi Cap Fund",
-      "category": "Flexi Cap",
-      "risk": "High",
-      "nav": 76.58,
-      "returns": 18.91
-    },
-    {
-      "id": 3,
-      "fundName": "Nippon India Small Cap Fund",
-      "category": "Small Cap",
-      "risk": "High",
-      "nav": 142.63,
-      "returns": 22.47
-    },
-    {
-      "id": 4,
-      "fundName": "DSP Corporate Bond Fund",
-      "category": "Debt",
-      "risk": "Low",
-      "nav": 41.29,
-      "returns": 7.12
-    },
-    {
-      "id": 5,
-      "fundName": "Canara Robeco Emerging Equities Fund",
-      "category": "Large & Mid Cap",
-      "risk": "Moderate Risk",
-      "nav": 63.85,
-      "returns": 13.76
-    }
-  ]
+  {
+    "id": 1,
+    "fundName": "Axis Bluechip Fund",
+    "category": "Equity",
+    "sipAmount": 5000,
+    "frequency": "mo",
+    "installmentsPaid": 12,
+    "currentValue": 71220,
+    "gain": 18.7
+  },
+  {
+    "id": 2,
+    "fundName": "HDFC Balanced Advantage Fund",
+    "category": "Hybrid",
+    "sipAmount": 3000,
+    "frequency": "mo",
+    "installmentsPaid": 12,
+    "currentValue": 38916,
+    "gain": 8.1
+  },
+  {
+    "id": 3,
+    "fundName": "Mirae Asset Large Cap Fund",
+    "category": "Equity",
+    "sipAmount": 1000,
+    "frequency": "qtr",
+    "installmentsPaid": 11,
+    "currentValue": 12562,
+    "gain": 14.2
+  },
+  {
+    "id": 4,
+    "fundName": "Parag Parikh Flexi Cap Fund",
+    "category": "Flexi Cap",
+    "sipAmount": 4000,
+    "frequency": "mo",
+    "installmentsPaid": 18,
+    "currentValue": 98450,
+    "gain": 16.9
+  },
+  {
+    "id": 5,
+    "fundName": "Nippon India Small Cap Fund",
+    "category": "Small Cap",
+    "sipAmount": 2500,
+    "frequency": "mo",
+    "installmentsPaid": 24,
+    "currentValue": 86420,
+    "gain": 21.4
+  },
+  {
+    "id": 6,
+    "fundName": "DSP Corporate Bond Fund",
+    "category": "Debt",
+    "sipAmount": 2000,
+    "frequency": "mo",
+    "installmentsPaid": 15,
+    "currentValue": 34875,
+    "gain": 7.3
+  }
+]
 }
 
  
