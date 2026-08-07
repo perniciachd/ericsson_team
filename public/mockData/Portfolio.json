@@ -1,0 +1,7 @@
+[
+	{ "id": 1, "name": "Parag Parikh Flexi Cap", "type": "Equity", "sip": "₹1,000/mo", "paid": 12, "value": 13836, "gain": 15.3 },
+	{ "id": 2, "name": "HDFC Mid-Cap Opportunities", "type": "Equity", "sip": "₹2,000/mo", "paid": 10, "value": 22500, "gain": 12.5 },
+	{ "id": 3, "name": "ICICI Pru Debt Fund", "type": "Debt", "sip": "₹1,500/mo", "paid": 8, "value": 12400, "gain": 3.2 },
+	{ "id": 4, "name": "SBI Hybrid Equity", "type": "Hybrid", "sip": "₹1,000/mo", "paid": 6, "value": 6300, "gain": 5.0 },
+	{ "id": 5, "name": "Nifty 50 Index Fund", "type": "Index", "sip": "₹3,000/mo", "paid": 12, "value": 37800, "gain": 18.1 }
+]

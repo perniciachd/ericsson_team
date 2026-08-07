@@ -1,0 +1,86 @@
+[
+	{
+		"title": "Parag Parikh Flexi Cap",
+		"category": "Equity",
+		"riskLevel": "High",
+		"fundPrice": "78.40",
+		"fundGrowth": "+15.3"
+	},
+	{
+		"title": "Nippon India Small Cap",
+		"category": "Equity",
+		"riskLevel": "High",
+		"fundPrice": "145.80",
+		"fundGrowth": "+26.4"
+	},
+	{
+		"title": "Axis Bluechip Fund",
+		"category": "Equity",
+		"riskLevel": "High",
+		"fundPrice": "54.20",
+		"fundGrowth": "+18.7"
+	},
+	{
+		"title": "Mirae Asset Large Cap",
+		"category": "Equity",
+		"riskLevel": "High",
+		"fundPrice": "96.30",
+		"fundGrowth": "+14.2"
+	},
+	{
+		"title": "Kotak Emerging Equity",
+		"category": "Equity",
+		"riskLevel": "High",
+		"fundPrice": "88.20",
+		"fundGrowth": "+19.1"
+	},
+	{
+		"title": "UTI Nifty 50 Index",
+		"category": "Index",
+		"riskLevel": "Moderate",
+		"fundPrice": "128.60",
+		"fundGrowth": "+12.0"
+	},
+	{
+		"title": "Motilal Oswal Nasdaq 100",
+		"category": "Index",
+		"riskLevel": "High",
+		"fundPrice": "32.70",
+		"fundGrowth": "+28.3"
+	},
+	{
+		"title": "HDFC Balanced Advantage",
+		"category": "Hybrid",
+		"riskLevel": "Moderate",
+		"fundPrice": "42.10",
+		"fundGrowth": "+8.1"
+	},
+	{
+		"title": "DSP Gold Fund",
+		"category": "Hybrid",
+		"riskLevel": "Moderate",
+		"fundPrice": "22.40",
+		"fundGrowth": "+11.5"
+	},
+	{
+		"title": "SBI Corporate Bond",
+		"category": "Debt",
+		"riskLevel": "Low",
+		"fundPrice": "31.90",
+		"fundGrowth": "+4.4"
+	},
+	{
+		"title": "Aditya Birla Liquid Fund",
+		"category": "Debt",
+		"riskLevel": "Low",
+		"fundPrice": "380.40",
+		"fundGrowth": "+6.9"
+	},
+	{
+		"title": "ICICI Pru Technology",
+		"category": "Equity",
+		"riskLevel": "High",
+		"fundPrice": "172.50",
+		"fundGrowth": "+22.6"
+	}
+]
