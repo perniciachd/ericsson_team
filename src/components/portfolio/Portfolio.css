@@ -1,0 +1,76 @@
+/* Portfolio-specific styles — follows exploreFunds.css design system */
+
+/* Invest Button */
+.invest-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+  float: right;
+  margin-top: -55px;
+}
+
+.invest-btn:hover {
+  background: var(--accent-deep);
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+  clear: both;
+}
+
+.summary-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow);
+}
+
+.summary-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-deep);
+  letter-spacing: 0.4px;
+}
+
+.summary-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-gain {
+  font-size: 13px;
+  color: var(--gain);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .invest-btn {
+    float: none;
+    margin-top: 0;
+    margin-bottom: 14px;
+    display: block;
+    width: 100%;
+  }
+}
