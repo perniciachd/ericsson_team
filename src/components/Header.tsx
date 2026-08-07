@@ -26,7 +26,7 @@ const Header = () => {
           {username}
         </span>
         <Button
-          text={dark ? "☀ Light" : "☾ Dark"}
+          text={dark ? "Light" : " Dark"}
           onClick={toggleTheme}
         />
         <Button

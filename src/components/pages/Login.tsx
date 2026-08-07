@@ -5,18 +5,16 @@ import Logo from "../atomic/Logo";
 import Input from "../atomic/Input";
 import Button from "../atomic/Button";
 import FormLabel from "../atomic/Label";
+import useTheme from "../../context/UseTheme";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [dark, setDark] = useState(false);
+  //const [dark, setDark] = useState(false);
 
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle("dark");
-    setDark(!dark);
-  };
+  const { dark, Theme } = useTheme();
 
   const login = () => {
     if (username && password) {
@@ -41,7 +39,6 @@ const Login = () => {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-
       <FormLabel text="Password" />
       <Input
         name="password"
@@ -50,19 +47,16 @@ const Login = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-
       <Button
         text="Log in"
         onClick={login}
       />
-
       <p className="hint">
         Demo — any username and password works.
       </p>
-
       <Button
         text={dark ? "Light" : "Dark"}
-        onClick={toggleTheme}
+        onClick={Theme}
       />
     </>
   );

@@ -5,8 +5,10 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 
 import Login from "./components/pages/Login";
 import Market from "./components/Market";
+import { ThemeProvider } from './context/UseTheme.tsx';
 
 import "./index.css";
+import Example from "./components/Example";
 
 const router = createBrowserRouter([
   {
@@ -17,12 +19,18 @@ const router = createBrowserRouter([
     path: "/market",
     element: <Market />,
   },
+  {
+    path: "/context",
+    element: <Example/>
+  },
 ]);
 
 function App() {
  return(
+  <ThemeProvider>
   <RouterProvider router={router}>
        </RouterProvider>
+       </ThemeProvider>
  )
 }
  
