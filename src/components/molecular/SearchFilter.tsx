@@ -1,14 +1,23 @@
-export default function SearchFilter() {
-	return(
+const CATEGORIES = ["All", "Equity", "Debt", "Hybrid", "Index"];
+
+type Props = {
+	search: string;
+	category: string;
+	onSearch: (v: string) => void;
+	onCategory: (v: string) => void;
+};
+
+export default function SearchFilter({ search, category, onSearch, onCategory }: Props) {
+	return (
 		<div className="toolbar">
-			<input className="search" placeholder="Search funds…" />
+			<input className="search" placeholder="Search funds…" value={search} onChange={(e)=> onSearch(e.target.value)} />
 			<div className="seg">
-				<button className="seg-btn on">All</button>
-				<button className="seg-btn">Equity</button>
-				<button className="seg-btn">Debt</button>
-				<button className="seg-btn">Hybrid</button>
-				<button className="seg-btn">Index</button>
+				{CATEGORIES.map((cat) => (
+					<button key={cat} className={`seg-btn${category === cat ? " on" : ""}`} onClick={()=> onCategory(cat)}>
+						{cat}
+					</button>
+				))}
 			</div>
 		</div>
-	)
+	);
 }

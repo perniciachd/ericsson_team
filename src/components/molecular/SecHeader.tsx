@@ -1,5 +1,5 @@
-export default function SecHeader({title,subTitle}: any) {
-	return(
+export default function SecHeader({ title, subTitle }: { title: string; subTitle: string }) {
+	return (
 		<>
 			<div className="page-head">
 				<div>
@@ -8,5 +8,5 @@ export default function SecHeader({title,subTitle}: any) {
 				</div>
 			</div>
 		</>
-	)
+	);
 }
